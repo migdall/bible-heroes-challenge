@@ -1,5 +1,6 @@
-# The beginning of the app
+# The beginning of the game
 
+import time
 
 print """
 Welcome to Bible Heroes Challenge!\n
@@ -35,3 +36,13 @@ while champion_id == -1:
         champion_id = -1
 
 print "Now to find your opponent."
+
+exit = True
+while exit:
+    player_input = str(raw_input("777: "))
+    if player_input == "exit":
+        exit = False
+
+if not exit:
+    print "\n\nShutting down the game."
+    time.sleep(3)
