@@ -1,5 +1,8 @@
 # List of Enemies to go against
 
+DEFEATED = []
+CHALLENGED = []
+
 ENEMIES = (
     "Lucifer",
     "Lot",
