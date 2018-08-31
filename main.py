@@ -3,7 +3,7 @@
 import time
 import random
 
-from enemies import ENEMIES, DEFEATED, CHALLENGED
+from enemies import ENEMIES, DEFEATED, CHALLENGED, POKEDEX
 
 
 def is_player_closest(original, player, enemy):
@@ -63,13 +63,21 @@ while exit:
         exit = False
     elif player_input == "wins":
         print DEFEATED
+    elif player_input == "dex":
+        if len(DEFEATED) > 0:
+            player_dex_input = -1
+            for i, character in enumerate(DEFEATED):
+                print "%s: %s" % (i+1, character)
+            player_dex_input = str(raw_input("Enter character name: "))
+            if player_dex_input in DEFEATED:
+                print "\n\t%s - %s\n" % (player_dex_input, POKEDEX[player_dex_input])
     elif player_input == "fight":
         print "\nSelecting enemy."
         time.sleep(1)
         selected_enemy_name = None
         while selected_enemy_name == None:
             selected_enemy_index = random.randrange(0, len(ENEMIES))
-            if ENEMIES[selected_enemy_index] in CHALLENGED:
+            if ENEMIES[selected_enemy_index] in CHALLENGED and len(ENEMIES) <= len(CHALLENGED):
                 continue
             selected_enemy_name = ENEMIES[selected_enemy_index]
         print "You have challenged %s" % selected_enemy_name
