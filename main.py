@@ -61,6 +61,13 @@ while exit:
     player_input = str(raw_input("777: "))
     if player_input == "exit":
         exit = False
+    elif player_input == "help":
+        print """
+        fight - battle against an enemy
+        dex   - if you defeat an enemy you can look up their info
+        wins  - see who you have defeated
+        exit  - quit the game
+        """
     elif player_input == "wins":
         print DEFEATED
     elif player_input == "dex":
