@@ -52,6 +52,7 @@ while champion_id == -1:
     elif champion_id == 4:
         print "A warrior judge. Your champion is Deborah."
     else:
+        print "\n\tyour number %s not an option" % champion_id
         champion_id = -1
 
 print "Now to find your opponent."
@@ -92,7 +93,17 @@ while exit:
         time.sleep(1)
         print "BATTLE!!!"
         battle_random_number = random.randrange(1, 21)
-        player_battle_number_input = int(raw_input("Pick a number between 1 and 20: "))
+        try:
+            player_battle_number_input = int(raw_input("Pick a number between 1 and 20: "))
+        except ValueError:
+            print "haha nice try"
+            continue
+
+        # Make sure player input is actually between 1 and 20
+        if player_battle_number_input < 1 or player_battle_number_input > 20:
+            print "yo number is crazy!!! #yolo"
+            continue
+
         enemy_battle_number_input = random.randrange(1, 21)
         print "\nYou chose %s" % player_battle_number_input
         print "Calculating..."
@@ -103,7 +114,8 @@ while exit:
         else:
             print "%s WINS" % selected_enemy_name
         CHALLENGED.append(selected_enemy_name)
-
+    else:
+        print "not a command"
 
 if not exit:
     print "\n\nShutting down the game."
