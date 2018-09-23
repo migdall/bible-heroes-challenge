@@ -93,16 +93,20 @@ while exit:
         time.sleep(1)
         print "BATTLE!!!"
         battle_random_number = random.randrange(1, 21)
-        try:
-            player_battle_number_input = int(raw_input("Pick a number between 1 and 20: "))
-        except ValueError:
-            print "haha nice try"
-            continue
+        player_battle_number_input = -9999
+        while player_battle_number_input < 1 or player_battle_number_input > 20:
+            try:
+                player_battle_number_input = int(raw_input("Pick a number between 1 and 20: "))
+            except ValueError:
+                print "haha nice try"
+                player_battle_number_input = -9999
+                continue
 
-        # Make sure player input is actually between 1 and 20
-        if player_battle_number_input < 1 or player_battle_number_input > 20:
-            print "yo number is crazy!!! #yolo"
-            continue
+            # Make sure player input is actually between 1 and 20
+            if player_battle_number_input < 1 or player_battle_number_input > 20:
+                print "yo number is crazy!!! #yolo"
+                player_battle_number_input = -9999
+                continue
 
         enemy_battle_number_input = random.randrange(1, 21)
         print "\nYou chose %s" % player_battle_number_input
