@@ -3,7 +3,7 @@
 import time
 import random
 
-from enemies import ENEMIES, DEFEATED, CHALLENGED, POKEDEX
+from enemies import ENEMIES, DEFEATED, CHALLENGED, POKEDEX, DRAFTED
 
 
 def is_player_closest(original, player, enemy):
@@ -67,6 +67,7 @@ while exit:
         fight - battle against an enemy
         dex   - if you defeat an enemy you can look up their info
         wins  - see who you have defeated
+        draft - start drafting characters
         exit  - quit the game
         """
     elif player_input == "wins":
@@ -79,6 +80,18 @@ while exit:
             player_dex_input = str(raw_input("Enter character name: "))
             if player_dex_input in DEFEATED:
                 print "\n\t%s - %s\n" % (player_dex_input, POKEDEX[player_dex_input])
+    elif player_input == "draft":
+        print "\n... Drafting a character ..."
+        time.sleep(1)
+        draftee = None
+        selected_draftee_index = 0
+        while draftee == None:
+            selected_draftee_index = random.randrange(0, len(ENEMIES))
+            if ENEMIES[selected_draftee_index] in DRAFTED and len(ENEMIES) <= len(DRAFTED):
+                continue
+            print "\nDraftee Index:", selected_draftee_index
+            draftee = ENEMIES[selected_draftee_index]
+        print "\n\t%s - %s\n" % (draftee, POKEDEX[draftee])
     elif player_input == "fight":
         print "\nSelecting enemy."
         time.sleep(1)
